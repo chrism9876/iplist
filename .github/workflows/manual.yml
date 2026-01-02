@@ -29,8 +29,8 @@ jobs:
         fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
     - name: Create local changes
       run: |
-        curl https://www.gstatic.com/ipranges/goog.json | grep ipv4Prefix| awk -F ': ' '{print $2}' | tr -d '"' > goog.txt
-        echo "192.168.30.0/24" >> goog.txt
+        curl https://www.gstatic.com/ipranges/goog.json | grep ip| awk -F ': ' '{print $2}' | tr -d '"' > goog.txt
+        sed -i -e '1i192.168.30.0/24\' goog.txt
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
